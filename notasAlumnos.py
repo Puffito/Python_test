@@ -7,12 +7,11 @@ class Alumno:
         self.name = name
         self.nota = nota
         Alumno.alumnosTotales+=1
-        
-        
+             
 def main():    
     salir = False
     while not salir:
-        opcion = int(input("""
+        opción = int(input("""
                         Bienvenido a la base de datos de las Notas del colegio
                         ¿Qué desea hacer?
                         1. Ver notas
@@ -22,15 +21,13 @@ def main():
                         5. Ver suspendidos
                         6. Salir
                         """))
-        if opcion == 1: verNotas()
-        elif opcion == 2: anadirNota()
-        elif opcion == 3: borrarNota()
-        elif opcion == 4: estadistica()
-        elif opcion == 5: verSuspensos()
-        elif opcion == 6: salir = True
+        if opción == 1: verNotas()
+        elif opción == 2: añadirNota()
+        elif opción == 3: borrarNota()
+        elif opción == 4: estadística()
+        elif opción == 5: verSuspensos()
+        elif opción == 6: salir = True
     print("Gracias por usar la base de datos")
-
-
 
 def verNotas():
     contador = 0
@@ -40,18 +37,18 @@ def verNotas():
             contador+=1
     else: print("No hay alumnos suficientes")
 
-def anadirNota():
-    nombre = input("Introduzca el nombre del Alumno")
-    nota = int(input("Introduzca la nota del Alumno"))
+def añadirNota():
+    nombre = input("Introduzca el nombre del Alumno: ")
+    nota = int(input("Introduzca la nota del Alumno: "))
     database.append(Alumno(nombre,nota))
 
 def borrarNota():
-    posición = int(input("Introduce la posición de la nota que deseas borrar"))
-    if posición < Alumno.alumnosTotales and posición > 0:
+    posición = int(input("Introduce la posición de la nota que deseas borrar: "))
+    if posición < Alumno.alumnosTotales and posición >= 0:
        del database[posición]
        Alumno.alumnosTotales-=1
 
-def estadistica():
+def estadística():
     notaMax = 0
     notaMin = 11
     suma = 0
@@ -71,5 +68,6 @@ def verSuspensos():
         if database[x].nota <5 : print("{0} {1}".format(database[x].name,database[x].nota))
 
 database = []
-        
-main()
+
+if __name__=="__main__":
+    main()
